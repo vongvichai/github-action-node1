@@ -8,7 +8,7 @@ jobs:
     name: Build and Deploy
 
     steps:
-      - uses: actions/checkout@masteer
+      - uses: actions/checkout@master
 
       - name: Set up Node.js
         uses: actions/setup-node@v1
