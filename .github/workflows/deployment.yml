@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to VPS
         uses: nogsantos/scp-deploy@master
         with:
-          src: ~/github-action-node1
+          src: /home/runner/work/github-action-node1/github-action-node1
           host: ${{ secrets.SSH_HOST }}
           remote: ${{ secrets.WORK_DIR }}
           port: ${{ secrets.SSH_PORT }}
