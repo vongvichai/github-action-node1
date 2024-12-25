@@ -1,0 +1,29 @@
+name: SSH Deployment
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+
+    steps:
+      - uses: actions/checkout@masteer
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
+
+      - run: npm i
+      - run: npm run build
+
+      - name: Deploy to VPS
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: /home/vichai/projects/github-action-node1
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.WORK_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
