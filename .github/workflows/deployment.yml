@@ -28,6 +28,18 @@ jobs:
           SSH_PORT: ${{ secrets.SSH_PORT }}
           TARGET: ${{ secrets.WORK_DIR }}
 
+      - name: Run remote script
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.WORK_DIR }}
+            npm install
+            pm2 restart --name github-action
+
       # - name: Deploy to VPS
       #   uses: nogsantos/scp-deploy@master
       #   with:
