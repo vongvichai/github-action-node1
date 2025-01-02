@@ -38,7 +38,7 @@ jobs:
           script: |
             cd ${{ secrets.WORK_DIR }}
             npm install
-            pm2 restart 8
+            pm2 restart github-action
 
       # - name: Deploy to VPS
       #   uses: nogsantos/scp-deploy@master
